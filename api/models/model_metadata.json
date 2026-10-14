@@ -1,0 +1,72 @@
+{
+  "model": "XGBRegressor in sklearn Pipeline",
+  "features": [
+    "from",
+    "to",
+    "flightType",
+    "agency",
+    "distance"
+  ],
+  "target": "price",
+  "valid_values": {
+    "from": [
+      "Aracaju (SE)",
+      "Brasilia (DF)",
+      "Campo Grande (MS)",
+      "Florianopolis (SC)",
+      "Natal (RN)",
+      "Recife (PE)",
+      "Rio de Janeiro (RJ)",
+      "Salvador (BH)",
+      "Sao Paulo (SP)"
+    ],
+    "to": [
+      "Aracaju (SE)",
+      "Brasilia (DF)",
+      "Campo Grande (MS)",
+      "Florianopolis (SC)",
+      "Natal (RN)",
+      "Recife (PE)",
+      "Rio de Janeiro (RJ)",
+      "Salvador (BH)",
+      "Sao Paulo (SP)"
+    ],
+    "flightType": [
+      "economic",
+      "firstClass",
+      "premium"
+    ],
+    "agency": [
+      "CloudFy",
+      "FlyingDrops",
+      "Rainbow"
+    ]
+  },
+  "agency_classes": {
+    "FlyingDrops": [
+      "firstClass"
+    ],
+    "CloudFy": [
+      "economic",
+      "firstClass",
+      "premium"
+    ],
+    "Rainbow": [
+      "economic",
+      "firstClass",
+      "premium"
+    ]
+  },
+  "test_metrics": {
+    "R2": 1.0,
+    "MAE": 0.0002,
+    "RMSE": 0.0002,
+    "MAPE": 0.0
+  },
+  "best_params": {
+    "subsample": 0.8,
+    "n_estimators": 600,
+    "max_depth": 8,
+    "learning_rate": 0.2
+  }
+}

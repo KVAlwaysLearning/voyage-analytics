@@ -1,0 +1,40 @@
+{
+  "model": "HotelRecommender (user-based CF + history + popularity, context-aware)",
+  "params": {
+    "k_neighbors": 200,
+    "w_cf": 1.0,
+    "w_history": 0.0,
+    "w_pop": 0.2
+  },
+  "requires_module": "recommender.py (keep it next to the .joblib file and on the Python path)",
+  "inputs": {
+    "userCode": "int (unknown users get popular hotels)",
+    "origin": "departure city (optional)",
+    "destination": "city (optional)",
+    "max_price": "nightly budget (optional)",
+    "k": "number of suggestions"
+  },
+  "cities": [
+    "Aracaju (SE)",
+    "Brasilia (DF)",
+    "Campo Grande (MS)",
+    "Florianopolis (SC)",
+    "Natal (RN)",
+    "Recife (PE)",
+    "Rio de Janeiro (RJ)",
+    "Salvador (BH)",
+    "Sao Paulo (SP)"
+  ],
+  "test_metrics": {
+    "hit@1": 0.1233,
+    "hit@3": 0.375,
+    "mrr": 0.3377,
+    "coverage": 1.0
+  },
+  "random_baseline": {
+    "hit@1": 0.125,
+    "hit@3": 0.375,
+    "mrr": 0.3397
+  },
+  "note": "Offline accuracy equals the random baseline; value comes from context rules, filters, cold start and explanations. Validate with an online A/B test."
+}

@@ -1,0 +1,37 @@
+{
+  "model": "XGBoost (tuned)",
+  "input_fields": {
+    "name": "full or first name (text)",
+    "age": "integer",
+    "company": "text"
+  },
+  "derived_features": [
+    "first_name",
+    "last_letter",
+    "ends_vowel",
+    "name_len",
+    "age",
+    "company"
+  ],
+  "classes": [
+    "female",
+    "male",
+    "none"
+  ],
+  "test_metrics": {
+    "accuracy": 0.5597,
+    "precision_macro": 0.5379,
+    "recall_macro": 0.5575,
+    "f1_macro": 0.5406,
+    "roc_auc_ovr": 0.7302
+  },
+  "binary_female_vs_male_cv_accuracy": 0.86,
+  "known_companies": [
+    "4You",
+    "Acme Factory",
+    "Monsters CYA",
+    "Umbrella LTDA",
+    "Wonka Company"
+  ],
+  "responsible_use": "Low-confidence estimate for aggregate analytics only. Never override a user-provided value; never use for pricing or eligibility."
+}

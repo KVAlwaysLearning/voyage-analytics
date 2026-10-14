@@ -1,0 +1,11 @@
+# Keep the image small: only app code, requirements and models/ are needed
+*.zip
+__pycache__/
+*.pyc
+tests/
+.pytest_cache/
+.git/
+mlruns/
+*.md
+requirements-dev.txt
+setup_models.py
