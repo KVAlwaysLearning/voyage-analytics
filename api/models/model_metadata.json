@@ -60,13 +60,16 @@
   "test_metrics": {
     "R2": 1.0,
     "MAE": 0.0002,
-    "RMSE": 0.0002,
-    "MAPE": 0.0
+    "RMSE": 0.0002
   },
   "best_params": {
-    "subsample": 0.8,
     "n_estimators": 600,
     "max_depth": 8,
-    "learning_rate": 0.2
-  }
+    "learning_rate": 0.2,
+    "subsample": 0.8
+  },
+  "model_version": 6,
+  "trained_by": "airflow:flight_price_retraining",
+  "airflow_run_id": "manual__2026-10-15T18:02:07+00:00",
+  "trained_at": "2026-10-15T18:04:58+00:00"
 }

@@ -1,0 +1,3 @@
+data/*.csv
+runs/
+__pycache__/
