@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voyage Analytics</title>
+  <meta name="description" content="Flight fare estimates, hotel suggestions and travel insights from the Voyage Analytics models.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F3A40'/%3E%3Cpath d='M7 19l18-7-4 10-5-3-3 4v-5z' fill='%23F2B705'/%3E%3C/svg%3E">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#fare" aria-label="Voyage Analytics home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M7 19l18-7-4 10-5-3-3 4v-5z"/></svg>
+        <span>Voyage Analytics</span>
+      </a>
+      <button class="api-status" id="apiStatus" type="button" data-state="connecting" title="Check the API again">
+        <span class="dot" aria-hidden="true"></span><span class="label">Connecting to the API…</span>
+      </button>
+    </div>
+    <nav class="wrap tabs" role="tablist" aria-label="Sections">
+      <button role="tab" id="tab-fare" aria-controls="panel-fare" aria-selected="true">Fare estimate</button>
+      <button role="tab" id="tab-hotels" aria-controls="panel-hotels" aria-selected="false">Hotel picks</button>
+      <button role="tab" id="tab-name" aria-controls="panel-name" aria-selected="false">Name check</button>
+      <button role="tab" id="tab-insights" aria-controls="panel-insights" aria-selected="false">Insights</button>
+      <button role="tab" id="tab-models" aria-controls="panel-models" aria-selected="false">Models</button>
+    </nav>
+  </header>
+
+  <div class="wake-note wrap" id="wakeNote" hidden>
+    The API runs on free hosting and sleeps when nobody is using it. It is waking up now, which can take up to a minute. The forms unlock as soon as it answers.
+  </div>
+
+  <main class="wrap">
+    <!-- ============ FARE ============ -->
+    <section class="panel" id="panel-fare" role="tabpanel" aria-labelledby="tab-fare">
+      <div class="panel-head">
+        <h1>What will this flight cost?</h1>
+        <p class="lede">Pick a route, class and airline. The price model was trained on 271,888 domestic flights across nine Brazilian cities.</p>
+      </div>
+      <div class="split">
+        <form class="form" id="fareForm" novalidate>
+          <div class="field-row">
+            <label class="field"><span>From</span><select name="from" id="fareFrom" required disabled></select></label>
+            <button class="swap" type="button" id="swapCities" aria-label="Swap departure and arrival cities">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg>
+            </button>
+            <label class="field"><span>To</span><select name="to" id="fareTo" required disabled></select></label>
+          </div>
+          <label class="field"><span>Airline</span><select name="agency" id="fareAgency" required disabled></select></label>
+          <fieldset class="field">
+            <legend>Class</legend>
+            <div class="segmented" id="fareClass"></div>
+            <small class="hint" id="classHint"></small>
+          </fieldset>
+          <button class="primary" type="submit" disabled>Estimate fare</button>
+          <p class="form-error" role="alert" id="fareError"></p>
+        </form>
+
+        <div class="result-slot" aria-live="polite">
+          <article class="pass" id="pass" data-empty="true">
+            <div class="pass-main">
+              <div class="pass-route">
+                <div><span class="code" id="passFromCode">REC</span><span class="city" id="passFromCity">Recife</span></div>
+                <svg class="plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 13l20-6-6 13-4-5-5 4v-6z"/></svg>
+                <div class="to"><span class="code" id="passToCode">FLN</span><span class="city" id="passToCity">Florianopolis</span></div>
+              </div>
+              <dl class="pass-meta">
+                <div><dt>Airline</dt><dd id="passAgency">–</dd></div>
+                <div><dt>Class</dt><dd id="passClass">–</dd></div>
+                <div><dt>Distance</dt><dd id="passDistance">–</dd></div>
+              </dl>
+            </div>
+            <div class="pass-stub">
+              <span class="stub-label">Estimated fare</span>
+              <span class="price" id="passPrice">–</span>
+              <span class="stub-note">Brazilian reais, one way</span>
+            </div>
+          </article>
+          <p class="empty-hint" id="passHint">Your estimate appears here as a boarding pass.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOTELS ============ -->
+    <section class="panel" id="panel-hotels" role="tabpanel" aria-labelledby="tab-hotels" hidden>
+      <div class="panel-head">
+        <h1>Where should this traveller stay?</h1>
+        <p class="lede">Suggestions use the traveller's booking history and what similar travellers booked. The hotel in the city they fly from is never suggested.</p>
+      </div>
+      <div class="split">
+        <form class="form" id="hotelForm" novalidate>
+          <div class="field-row">
+            <label class="field"><span>Traveller ID</span><input type="number" name="userCode" id="hotelUser" min="0" max="1339" value="0" inputmode="numeric" required disabled></label>
+            <label class="check"><input type="checkbox" id="hotelNew" disabled> New traveller</label>
+          </div>
+          <label class="field"><span>Flying from</span><select name="origin" id="hotelOrigin" disabled></select></label>
+          <label class="field"><span>Going to <em>(optional)</em></span><select name="destination" id="hotelDest" disabled></select></label>
+          <label class="field">
+            <span>Budget per night: <output id="budgetOut">any</output></span>
+            <input type="range" id="hotelBudget" min="50" max="350" step="10" value="350" disabled>
+          </label>
+          <label class="field"><span>How many suggestions</span>
+            <select id="hotelK" disabled><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select>
+          </label>
+          <button class="primary" type="submit" disabled>Suggest hotels</button>
+          <p class="form-error" role="alert" id="hotelError"></p>
+        </form>
+        <div class="result-slot" aria-live="polite">
+          <ol class="hotel-list" id="hotelList"></ol>
+          <p class="empty-hint" id="hotelHint">Choose a traveller and a departure city to see suggestions. Traveller IDs run from 0 to 1339.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NAME ============ -->
+    <section class="panel" id="panel-name" role="tabpanel" aria-labelledby="tab-name" hidden>
+      <div class="panel-head">
+        <h1>What does a first name suggest?</h1>
+        <p class="lede">The gender model reads letter patterns in a first name. It is right about 56% of the time across three classes, and 86% of the time for male vs female, so treat it as a rough estimate for analytics, never as a fact about a person.</p>
+      </div>
+      <div class="split">
+        <form class="form" id="nameForm" novalidate>
+          <label class="field"><span>Name</span><input type="text" id="nameInput" autocomplete="off" placeholder="e.g. Isabella Santos" required disabled></label>
+          <div class="field-row">
+            <label class="field"><span>Age</span><input type="number" id="nameAge" min="1" max="119" value="35" required disabled></label>
+            <label class="field"><span>Company</span><select id="nameCompany" disabled></select></label>
+          </div>
+          <button class="primary" type="submit" disabled>Check name</button>
+          <p class="form-error" role="alert" id="nameError"></p>
+        </form>
+        <div class="result-slot" aria-live="polite">
+          <div class="bars" id="nameBars" hidden></div>
+          <p class="empty-hint" id="nameHint">Enter a name to see the probability of each label.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INSIGHTS ============ -->
+    <section class="panel" id="panel-insights" role="tabpanel" aria-labelledby="tab-insights" hidden>
+      <div class="panel-head">
+        <h1>How Voyage travellers move</h1>
+        <p class="lede" id="insightsLede">Patterns from the flights, hotels and users data behind the models.</p>
+      </div>
+      <dl class="facts" id="facts"></dl>
+      <div class="charts">
+        <figure class="chart wide"><figcaption><strong>Trips per month have fallen steadily since late 2019</strong><span>while the average outbound fare stayed flat</span></figcaption><div class="canvas-box"><canvas id="chMonthly"></canvas></div></figure>
+        <figure class="chart"><figcaption><strong>Class sets the fare</strong><span>Average ticket price by class</span></figcaption><div class="canvas-box"><canvas id="chClass"></canvas></div></figure>
+        <figure class="chart"><figcaption><strong>FlyingDrops only sells first class</strong><span>Flight legs by airline and class</span></figcaption><div class="canvas-box"><canvas id="chAgency"></canvas></div></figure>
+        <figure class="chart"><figcaption><strong>Seven in ten trips book no hotel</strong><span>Hotel stays per 100 trips, by destination</span></figcaption><div class="canvas-box"><canvas id="chAttach"></canvas></div></figure>
+        <figure class="chart"><figcaption><strong>One hotel per city, five-fold price range</strong><span>Price per night</span></figcaption><div class="canvas-box"><canvas id="chHotelPrice"></canvas></div></figure>
+      </div>
+    </section>
+
+    <!-- ============ MODELS ============ -->
+    <section class="panel" id="panel-models" role="tabpanel" aria-labelledby="tab-models" hidden>
+      <div class="panel-head">
+        <h1>The models behind this page</h1>
+        <p class="lede">Each model is tracked in MLflow on DagsHub, registered, packaged in one Docker image and served by a Flask API.</p>
+      </div>
+      <div class="model-grid" id="modelGrid"></div>
+      <h2 class="sub">How a prediction reaches you</h2>
+      <ol class="pipeline">
+        <li><strong>Colab</strong><span>Exploration, training and tuning</span></li>
+        <li><strong>MLflow on DagsHub</strong><span>Every run logged, best models registered</span></li>
+        <li><strong>Flask API</strong><span>Validates input and serves all three models</span></li>
+        <li><strong>Docker</strong><span>One image, pushed to Docker Hub</span></li>
+        <li><strong>Render and Kubernetes</strong><span>Public hosting and scaling</span></li>
+        <li><strong>This page</strong><span>Calls the API from your browser</span></li>
+      </ol>
+      <p class="api-line">API in use: <code id="apiUrl"></code></p>
+    </section>
+  </main>
+
+  <footer class="wrap footer">Voyage Analytics, an MLOps capstone project. Data: 2019–2023 synthetic corporate travel records.</footer>
+
+  <script src="config.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

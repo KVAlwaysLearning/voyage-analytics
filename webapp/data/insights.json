@@ -1,0 +1,342 @@
+{
+ "kpis": {
+  "flight_legs": 271888,
+  "trips": 135944,
+  "hotel_stays": 40552,
+  "users": 1340,
+  "cities": 9,
+  "date_from": "2019-09-26",
+  "date_to": "2023-07-24"
+ },
+ "monthly": {
+  "labels": [
+   "2019-09",
+   "2019-10",
+   "2019-11",
+   "2019-12",
+   "2020-01",
+   "2020-02",
+   "2020-03",
+   "2020-04",
+   "2020-05",
+   "2020-06",
+   "2020-07",
+   "2020-08",
+   "2020-09",
+   "2020-10",
+   "2020-11",
+   "2020-12",
+   "2021-01",
+   "2021-02",
+   "2021-03",
+   "2021-04",
+   "2021-05",
+   "2021-06",
+   "2021-07",
+   "2021-08",
+   "2021-09",
+   "2021-10",
+   "2021-11",
+   "2021-12",
+   "2022-01",
+   "2022-02",
+   "2022-03",
+   "2022-04",
+   "2022-05",
+   "2022-06",
+   "2022-07",
+   "2022-08",
+   "2022-09",
+   "2022-10",
+   "2022-11",
+   "2022-12",
+   "2023-01",
+   "2023-02",
+   "2023-03",
+   "2023-04",
+   "2023-05",
+   "2023-06",
+   "2023-07"
+  ],
+  "trips": [
+   1335,
+   6523,
+   5069,
+   4986,
+   6115,
+   4796,
+   4717,
+   5725,
+   4474,
+   4383,
+   5325,
+   4134,
+   3977,
+   4795,
+   3744,
+   4550,
+   3539,
+   3428,
+   3308,
+   3968,
+   3063,
+   2937,
+   3525,
+   2697,
+   3202,
+   2489,
+   2404,
+   2889,
+   2185,
+   2119,
+   2546,
+   1915,
+   1794,
+   2079,
+   1565,
+   1478,
+   1651,
+   1191,
+   1046,
+   1147,
+   798,
+   689,
+   696,
+   408,
+   285,
+   201,
+   54
+  ],
+  "avg_price": [
+   917.6,
+   917.1,
+   934.4,
+   923.0,
+   929.1,
+   928.9,
+   935.1,
+   929.0,
+   939.9,
+   932.6,
+   932.0,
+   923.3,
+   928.1,
+   925.2,
+   924.5,
+   935.7,
+   922.6,
+   932.9,
+   929.5,
+   933.7,
+   929.6,
+   932.9,
+   929.1,
+   930.5,
+   932.0,
+   945.7,
+   931.6,
+   936.6,
+   921.4,
+   932.1,
+   930.8,
+   927.2,
+   919.1,
+   947.9,
+   954.5,
+   936.2,
+   920.2,
+   928.5,
+   933.5,
+   941.6,
+   910.0,
+   951.3,
+   927.6,
+   935.4,
+   948.9,
+   914.0,
+   1015.9
+  ]
+ },
+ "price_by_class": {
+  "labels": [
+   "Economy",
+   "Premium",
+   "First class"
+  ],
+  "values": [
+   658.4,
+   920.4,
+   1181.1
+  ]
+ },
+ "agency_class": {
+  "agencies": [
+   "CloudFy",
+   "FlyingDrops",
+   "Rainbow"
+  ],
+  "classes": [
+   "Economy",
+   "Premium",
+   "First class"
+  ],
+  "values": [
+   [
+    38656,
+    38860,
+    38862
+   ],
+   [
+    0,
+    0,
+    38758
+   ],
+   [
+    38810,
+    39144,
+    38798
+   ]
+  ]
+ },
+ "hotel_attach": {
+  "labels": [
+   "Aracaju (SE)",
+   "Brasilia (DF)",
+   "Campo Grande (MS)",
+   "Florianopolis (SC)",
+   "Natal (RN)",
+   "Recife (PE)",
+   "Rio de Janeiro (RJ)",
+   "Salvador (BH)",
+   "Sao Paulo (SP)"
+  ],
+  "rate": [
+   29.7,
+   29.5,
+   29.9,
+   30.1,
+   30.0,
+   29.4,
+   29.9,
+   29.8,
+   30.3
+  ],
+  "trips": [
+   14178,
+   15057,
+   14508,
+   11047,
+   16102,
+   15197,
+   16815,
+   17104,
+   15936
+  ],
+  "stays": [
+   4205,
+   4437,
+   4333,
+   3330,
+   4829,
+   4467,
+   5029,
+   5094,
+   4828
+  ]
+ },
+ "hotel_price": {
+  "labels": [
+   "Hotel BW, Campo Grande",
+   "Hotel AF, Sao Paulo",
+   "Hotel CB, Rio de Janeiro",
+   "Hotel Z, Aracaju",
+   "Hotel BD, Natal",
+   "Hotel BP, Brasilia",
+   "Hotel K, Salvador",
+   "Hotel AU, Recife",
+   "Hotel A, Florianopolis"
+  ],
+  "values": [
+   60.39,
+   139.1,
+   165.99,
+   208.04,
+   242.88,
+   247.62,
+   263.41,
+   312.83,
+   313.02
+  ]
+ },
+ "top_routes": [
+  {
+   "route": "Florianopolis (SC) to Brasilia (DF)",
+   "trips": 5824
+  },
+  {
+   "route": "Florianopolis (SC) to Campo Grande (MS)",
+   "trips": 5818
+  },
+  {
+   "route": "Florianopolis (SC) to Rio de Janeiro (RJ)",
+   "trips": 5807
+  },
+  {
+   "route": "Florianopolis (SC) to Aracaju (SE)",
+   "trips": 5802
+  },
+  {
+   "route": "Florianopolis (SC) to Salvador (BH)",
+   "trips": 5800
+  },
+  {
+   "route": "Florianopolis (SC) to Natal (RN)",
+   "trips": 5778
+  },
+  {
+   "route": "Florianopolis (SC) to Sao Paulo (SP)",
+   "trips": 5722
+  },
+  {
+   "route": "Florianopolis (SC) to Recife (PE)",
+   "trips": 5719
+  }
+ ],
+ "gender": {
+  "female": 448,
+  "male": 452,
+  "none": 440
+ },
+ "models": [
+  {
+   "task": "Flight price",
+   "model": "XGBoost (tuned)",
+   "metrics": {
+    "R\u00b2": "1.0000",
+    "MAE": "0.0002",
+    "vs baseline": "Linear regression R\u00b2 0.919"
+   },
+   "registry": "flight-price-model"
+  },
+  {
+   "task": "Gender",
+   "model": "XGBoost (tuned)",
+   "metrics": {
+    "Accuracy": "0.56",
+    "Macro-F1": "0.54",
+    "Female vs male": "0.86"
+   },
+   "registry": "gender-classifier"
+  },
+  {
+   "task": "Hotel suggestions",
+   "model": "Context-aware hybrid CF",
+   "metrics": {
+    "Hit@3": "0.375",
+    "MRR": "0.338",
+    "Random": "0.375 / 0.340"
+   },
+   "registry": "hotel-recommender"
+  }
+ ]
+}
