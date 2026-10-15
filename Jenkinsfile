@@ -35,7 +35,7 @@ pipeline {
                     }
                     env.GIT_SHORT   = sh(script: 'git rev-parse --short=7 HEAD', returnStdout: true).trim()
                     env.APP_VERSION = "1.0.${env.BUILD_NUMBER}-${env.GIT_SHORT}"
-                    env.IMAGE       = "docker.io/${env.DOCKERHUB_USERNAME}/voyage-api"
+                    env.IMAGE       = "docker.io/${env.DOCKERHUB_USERNAME.toLowerCase()}/voyage-api"
                     env.TAG         = "${env.BUILD_NUMBER}-${env.GIT_SHORT}"
                     env.DO_DEPLOY   = (params.DEPLOY == false) ? 'false' : 'true'
                     currentBuild.displayName = "#${env.BUILD_NUMBER} - ${env.GIT_SHORT}"
