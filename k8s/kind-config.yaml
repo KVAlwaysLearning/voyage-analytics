@@ -1,0 +1,12 @@
+# Local Kubernetes cluster (kind = "Kubernetes IN Docker") for the Voyage Analytics API.
+# Port 30080 on the cluster node is exposed as port 8080 in the Codespace,
+# so the API is reachable at http://localhost:8080 without port-forwarding.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: voyage
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30080
+        hostPort: 8080
+        protocol: TCP

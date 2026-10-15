@@ -1,0 +1,45 @@
+# Load generator: 20 parallel workers send price predictions to the API for 4 minutes.
+# Runs inside the cluster so it hits the Service (and therefore all pods) directly.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: load-test
+  namespace: voyage
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 600
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: load
+          image: python:3.12-slim
+          env:
+            - name: TARGET
+              value: http://voyage-api.voyage/predict/price
+            - name: DURATION_SECONDS
+              value: "240"
+            - name: WORKERS
+              value: "20"
+          command: ["python", "-c"]
+          args:
+            - |
+              import json, os, threading, time, urllib.request, collections
+              target = os.environ['TARGET']; duration = int(os.environ['DURATION_SECONDS']); workers = int(os.environ['WORKERS'])
+              body = json.dumps({"from": "Sao Paulo (SP)", "to": "Salvador (BH)", "flightType": "economic", "agency": "Rainbow"}).encode()
+              stats = collections.Counter(); lock = threading.Lock(); end = time.time() + duration
+              def worker():
+                  while time.time() < end:
+                      req = urllib.request.Request(target, data=body, headers={"Content-Type": "application/json"})
+                      try:
+                          urllib.request.urlopen(req, timeout=10).read(); key = 'ok'
+                      except Exception:
+                          key = 'error'
+                      with lock: stats[key] += 1
+              threads = [threading.Thread(target=worker) for _ in range(workers)]
+              [t.start() for t in threads]
+              start = time.time()
+              while any(t.is_alive() for t in threads):
+                  time.sleep(15)
+                  with lock: print(f"{int(time.time()-start):>4}s  ok={stats['ok']}  errors={stats['error']}", flush=True)
+              print('done:', dict(stats), flush=True)

@@ -1,0 +1,17 @@
+# One stable address in front of all API pods; spreads requests across them.
+apiVersion: v1
+kind: Service
+metadata:
+  name: voyage-api
+  namespace: voyage
+  labels:
+    app: voyage-api
+spec:
+  type: NodePort
+  selector:
+    app: voyage-api
+  ports:
+    - name: http
+      port: 80                         # inside the cluster: http://voyage-api.voyage
+      targetPort: http
+      nodePort: 30080                  # mapped to localhost:8080 by kind-config.yaml

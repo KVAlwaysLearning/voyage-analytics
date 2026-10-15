@@ -1,0 +1,58 @@
+# Runs the Voyage Analytics API (the same Docker image as Render) as 2 identical pods.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voyage-api
+  namespace: voyage
+  labels:
+    app: voyage-api
+spec:
+  replicas: 2                          # start with 2 pods; the autoscaler can add more
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: voyage-api
+  strategy:
+    type: RollingUpdate                # updates replace pods one at a time - no downtime
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: voyage-api
+    spec:
+      containers:
+        - name: api
+          image: docker.io/dockerkv102026/voyage-api:latest   # <-- replaced by sed in the guide
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 5000
+          env:
+            - name: PORT
+              value: "5000"
+            - name: APP_VERSION
+              value: "1.0.0-k8s"
+            - name: LOG_LEVEL
+              value: "INFO"
+          resources:
+            requests:                  # what the scheduler reserves; the autoscaler measures CPU against this
+              cpu: 100m
+              memory: 300Mi
+            limits:                    # hard ceiling per pod
+              cpu: 1000m
+              memory: 700Mi
+          startupProbe:                # give the models time to load before other probes start
+            httpGet: {path: /health, port: http}
+            periodSeconds: 5
+            failureThreshold: 24       # up to 2 minutes
+          readinessProbe:              # only send traffic to pods whose models are loaded
+            httpGet: {path: /health, port: http}
+            periodSeconds: 10
+            timeoutSeconds: 3
+          livenessProbe:               # restart the container if it stops answering
+            httpGet: {path: /health, port: http}
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 3

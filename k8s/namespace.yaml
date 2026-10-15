@@ -1,0 +1,7 @@
+# All Voyage Analytics resources live in their own namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: voyage
+  labels:
+    app.kubernetes.io/part-of: voyage-analytics

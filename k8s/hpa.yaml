@@ -1,0 +1,24 @@
+# Horizontal Pod Autoscaler: keeps average CPU around 50% of each pod's request,
+# adding pods (up to 5) under load and removing them (down to 2) when load drops.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: voyage-api
+  namespace: voyage
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: voyage-api
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 60   # wait 1 minute of low load before removing pods
