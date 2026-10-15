@@ -95,9 +95,10 @@ pipeline {
                 // run the real image the way Render/Kubernetes would, and call it over HTTP
                 sh '''
                     C="smoke-$BUILD_NUMBER"
-                    URL="http://$C:5000"
                     docker rm -f "$C" >/dev/null 2>&1 || true
-                    docker run -d --name "$C" --network "$CI_NETWORK" "$IMAGE:$TAG"
+                    docker run -d --name "$C" "$IMAGE:$TAG"
+                    IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$C")
+                    URL="http://$IP:5000"
 
                     echo "Waiting for $URL/health ..."
                     for i in $(seq 1 40); do

@@ -56,20 +56,24 @@ fi
 echo "Building the Jenkins image (first time takes 3-5 minutes)..."
 docker build -t voyage-jenkins:local "$HERE"
 
-docker network inspect voyage-ci >/dev/null 2>&1 || docker network create voyage-ci >/dev/null
 docker rm -f jenkins >/dev/null 2>&1 || true
+
+# Use the Codespace's own (non-loopback) DNS servers inside the container
+DNS_OPTS=()
+for ns in $(awk '/^nameserver/ {print $2}' /etc/resolv.conf); do
+  case "$ns" in 127.*|::1) ;; *) DNS_OPTS+=(--dns "$ns") ;; esac
+done
 
 export JENKINS_ADMIN_PASSWORD REPO_URL RENDER_API_URL RENDER_DEPLOY_ENABLED JENKINS_PUBLIC_URL
 docker run -d --name jenkins \
-  -p 8090:8080 \
-  --network voyage-ci \
+  -p 8090:8080 "${DNS_OPTS[@]}" \
   --group-add "$(stat -c %g /var/run/docker.sock)" \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v jenkins_home:/var/jenkins_home \
   -e JENKINS_ADMIN_PASSWORD -e REPO_URL -e GITHUB_USER -e GITHUB_TOKEN \
   -e DOCKERHUB_USERNAME -e DOCKERHUB_TOKEN \
   -e RENDER_DEPLOY_HOOK -e RENDER_API_URL -e RENDER_DEPLOY_ENABLED \
-  -e JENKINS_PUBLIC_URL -e CI_NETWORK=voyage-ci \
+  -e JENKINS_PUBLIC_URL \
   voyage-jenkins:local >/dev/null
 
 printf 'Starting Jenkins'
@@ -84,6 +88,9 @@ echo
 
 docker exec jenkins docker version --format 'Jenkins can use Docker {{.Server.Version}}' \
   || fail "Jenkins cannot reach Docker - check: docker logs jenkins"
+docker exec jenkins curl -sS -o /dev/null --max-time 20 https://github.com \
+  || fail "Jenkins cannot reach github.com (internet/DNS problem inside the container)"
+echo "Jenkins can reach GitHub"
 
 cat <<MSG
 
