@@ -1,0 +1,77 @@
+# Jenkins Configuration as Code - values in ${...} come from environment variables
+# that jenkins/start_jenkins.sh passes into the container.
+jenkins:
+  systemMessage: "Voyage Analytics CI/CD - builds, tests and ships the voyage-api Docker image"
+  numExecutors: 2
+  mode: NORMAL
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          name: "Voyage Admin"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true      # needed behind the Codespaces port-forwarding proxy
+  globalNodeProperties:
+    - envVars:
+        env:
+          - key: "DOCKERHUB_USERNAME"
+            value: "${DOCKERHUB_USERNAME}"
+          - key: "RENDER_API_URL"
+            value: "${RENDER_API_URL:-none}"
+          - key: "RENDER_DEPLOY_ENABLED"
+            value: "${RENDER_DEPLOY_ENABLED:-false}"
+          - key: "CI_NETWORK"
+            value: "${CI_NETWORK:-voyage-ci}"
+
+unclassified:
+  location:
+    url: "${JENKINS_PUBLIC_URL:-http://localhost:8090/}"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: "github"
+              description: "GitHub token - clone the repository"
+              username: "${GITHUB_USER:-x-access-token}"
+              password: "${GITHUB_TOKEN:-none}"
+          - usernamePassword:
+              scope: GLOBAL
+              id: "dockerhub"
+              description: "Docker Hub access token - push the voyage-api image"
+              username: "${DOCKERHUB_USERNAME}"
+              password: "${DOCKERHUB_TOKEN}"
+          - string:
+              scope: GLOBAL
+              id: "render-deploy-hook"
+              description: "Render deploy hook - redeploy voyage-api"
+              secret: "${RENDER_DEPLOY_HOOK:-none}"
+
+jobs:
+  - script: |
+      pipelineJob('voyage-api-ci') {
+        displayName('Voyage API - CI/CD')
+        description('Builds and tests the voyage-api Docker image, pushes it to Docker Hub and redeploys Render. Checks GitHub for new commits every 5 minutes.')
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('${REPO_URL}')
+                  credentials('github')
+                }
+                branch('*/main')
+              }
+            }
+            scriptPath('Jenkinsfile')
+          }
+        }
+      }
