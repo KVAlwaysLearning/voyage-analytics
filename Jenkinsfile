@@ -197,7 +197,6 @@ pipeline {
             archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
             sh '''
                 docker rmi "voyage-api-ci:$BUILD_NUMBER" >/dev/null 2>&1 || true
-                docker image prune -f >/dev/null 2>&1 || true
             '''
         }
     }
