@@ -94,3 +94,4 @@ Then github.com/codespaces → … → **Stop codespace**.
 - `docker build` finishing and `docker ps` showing **(healthy)**
 - the three `curl` responses
 - your image on hub.docker.com
+
