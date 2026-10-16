@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1660" height="1010" viewBox="0 0 1660 1010">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#52606d"/></marker></defs>
+<rect width="1660" height="1010" fill="#ffffff"/>
+<text x="40" y="46" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#0f3a40" text-anchor="start">Voyage Analytics: MLOps architecture</text>
+<text x="1620" y="46" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="500" fill="#52606d" text-anchor="end">build models  ·  automate  ·  serve</text>
+<rect x="40" y="80" width="440" height="470" rx="12" fill="#fff7e6" stroke="#c77700" stroke-width="1.5"/>
+<path d="M40 92 a12 12 0 0 1 12 -12 h416 a12 12 0 0 1 12 12 v24 h-440 z" fill="#c77700"/>
+<text x="56" y="104" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">Google Colab</text>
+<text x="466" y="104" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">model building</text>
+<rect x="60" y="130" width="400" height="64" rx="8" fill="#ffffff" stroke="#cbd2d9" stroke-width="1"/>
+<text x="72" y="151" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2933" text-anchor="start">Datasets</text>
+<text x="72" y="169" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">flights.csv 271,888 · hotels.csv 40,552 · users.csv 1,340</text>
+<rect x="60" y="206" width="400" height="58" rx="8" fill="#ffffff" stroke="#cbd2d9" stroke-width="1"/>
+<text x="72" y="227" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2933" text-anchor="start">EDA notebook</text>
+<text x="72" y="245" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">21 charts · cleaning · processed.zip</text>
+<rect x="60" y="276" width="400" height="80" rx="8" fill="#ffffff" stroke="#c77700" stroke-width="1"/>
+<text x="72" y="297" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2933" text-anchor="start">Flight price regression</text>
+<text x="72" y="315" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">XGBoost (tuned) · test R² 1.000, CV R² 1.000</text>
+<text x="72" y="332" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">price fully set by route distance, class and agency</text>
+<rect x="60" y="366" width="400" height="80" rx="8" fill="#ffffff" stroke="#c77700" stroke-width="1"/>
+<text x="72" y="387" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2933" text-anchor="start">Gender classification</text>
+<text x="72" y="405" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">XGBoost on first-name character n-grams</text>
+<text x="72" y="422" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">accuracy 0.56 (3 classes) · 0.86 female vs male</text>
+<rect x="60" y="456" width="400" height="80" rx="8" fill="#ffffff" stroke="#c77700" stroke-width="1"/>
+<text x="72" y="477" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2933" text-anchor="start">Hotel recommender</text>
+<text x="72" y="495" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">hybrid user-CF + popularity + departure-city rule</text>
+<text x="72" y="512" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Hit@3 0.377 vs 0.375 random: reported honestly</text>
+<path d="M260 550 L260 596" fill="none" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<text x="272" y="569" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="start">log runs ·</text>
+<text x="272" y="583" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="start">register models</text>
+<rect x="40" y="600" width="440" height="330" rx="12" fill="#f3effc" stroke="#5b3fa8" stroke-width="1.5"/>
+<path d="M40 612 a12 12 0 0 1 12 -12 h416 a12 12 0 0 1 12 12 v24 h-440 z" fill="#5b3fa8"/>
+<text x="56" y="624" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">DagsHub</text>
+<text x="466" y="624" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">MLflow tracking + registry</text>
+<rect x="60" y="650" width="400" height="118" rx="8" fill="#ffffff" stroke="#5b3fa8" stroke-width="1"/>
+<text x="72" y="671" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2933" text-anchor="start">Experiments</text>
+<text x="72" y="689" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">flight price regression: 3 models, baseline + tuned</text>
+<text x="72" y="706" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">gender classification: 3 models + binary check</text>
+<text x="72" y="723" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">hotel recommender: 3 models + final hybrid</text>
+<text x="72" y="740" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">flight-price-retraining: one run per Airflow promotion</text>
+<rect x="60" y="782" width="400" height="128" rx="8" fill="#ffffff" stroke="#5b3fa8" stroke-width="1"/>
+<text x="72" y="803" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="700" fill="#1f2933" text-anchor="start">Model Registry</text>
+<text x="72" y="821" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">flight-price-model: v1 from Colab, new</text>
+<text x="72" y="838" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">     versions registered by Airflow</text>
+<text x="72" y="855" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">gender-classifier</text>
+<text x="72" y="872" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">hotel-recommender (pyfunc)</text>
+<rect x="580" y="80" width="440" height="250" rx="12" fill="#f3f4f6" stroke="#24292f" stroke-width="1.5"/>
+<path d="M580 92 a12 12 0 0 1 12 -12 h416 a12 12 0 0 1 12 12 v24 h-440 z" fill="#24292f"/>
+<text x="596" y="104" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">GitHub</text>
+<text x="1006" y="104" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">KVAlwaysLearning/voyage-analytics</text>
+<rect x="600" y="132" width="400" height="26" rx="6" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="612" y="149.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#24292f" text-anchor="start">api/</text>
+<text x="988" y="149.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#57606a" text-anchor="end">Flask API, models, 13 tests</text>
+<rect x="600" y="163" width="400" height="26" rx="6" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="612" y="180.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#24292f" text-anchor="start">webapp/</text>
+<text x="988" y="180.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#57606a" text-anchor="end">static web app</text>
+<rect x="600" y="194" width="400" height="26" rx="6" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="612" y="211.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#24292f" text-anchor="start">k8s/</text>
+<text x="988" y="211.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#57606a" text-anchor="end">Kubernetes manifests</text>
+<rect x="600" y="225" width="400" height="26" rx="6" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="612" y="242.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#24292f" text-anchor="start">airflow/</text>
+<text x="988" y="242.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#57606a" text-anchor="end">retraining DAG</text>
+<rect x="600" y="256" width="400" height="26" rx="6" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="612" y="273.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#24292f" text-anchor="start">jenkins/ + Jenkinsfile</text>
+<text x="988" y="273.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#57606a" text-anchor="end">CI/CD pipeline</text>
+<rect x="600" y="287" width="400" height="26" rx="6" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+<text x="612" y="304.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#24292f" text-anchor="start">notebooks/ · docs/</text>
+<text x="988" y="304.5" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#57606a" text-anchor="end">Colab notebooks, diagrams</text>
+<path d="M800 330 L800 376" fill="none" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<text x="812" y="357" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="start">polled every 5 min</text>
+<rect x="580" y="380" width="440" height="250" rx="12" fill="#fef3f2" stroke="#b42318" stroke-width="1.5"/>
+<path d="M580 392 a12 12 0 0 1 12 -12 h416 a12 12 0 0 1 12 12 v24 h-440 z" fill="#b42318"/>
+<text x="596" y="404" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">Jenkins</text>
+<text x="1006" y="404" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">CI/CD · runs in GitHub Codespaces</text>
+<text x="594" y="442" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#b42318" text-anchor="start">CI</text>
+<rect x="622" y="422" width="86" height="30" rx="15" fill="#ffffff" stroke="#b42318" stroke-width="1.3"/>
+<text x="665.0" y="441.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Prepare</text>
+<rect x="718" y="422" width="86" height="30" rx="15" fill="#ffffff" stroke="#b42318" stroke-width="1.3"/>
+<text x="761.0" y="441.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Build image</text>
+<rect x="814" y="422" width="86" height="30" rx="15" fill="#ffffff" stroke="#b42318" stroke-width="1.3"/>
+<text x="857.0" y="441.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Unit tests</text>
+<rect x="910" y="422" width="86" height="30" rx="15" fill="#ffffff" stroke="#b42318" stroke-width="1.3"/>
+<text x="953.0" y="441.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Smoke test</text>
+<text x="592" y="495" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#b42318" text-anchor="start">CD</text>
+<rect x="616" y="475" width="126" height="30" rx="15" fill="#ffffff" stroke="#b42318" stroke-width="1.3"/>
+<text x="679.0" y="494.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Push to Docker Hub</text>
+<rect x="748" y="475" width="126" height="30" rx="15" fill="#ffffff" stroke="#b42318" stroke-width="1.3"/>
+<text x="811.0" y="494.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Deploy to Render</text>
+<rect x="880" y="475" width="126" height="30" rx="15" fill="#ffffff" stroke="#b42318" stroke-width="1.3"/>
+<text x="943.0" y="494.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Verify live API</text>
+<text x="600" y="538" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Every build gets a version (1.0.&lt;build&gt;-&lt;commit&gt;) baked into the</text>
+<text x="600" y="555" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">image. Verify waits until the live /health reports that version.</text>
+<text x="600" y="579" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">A failed stage stops the run, so production keeps the last good build.</text>
+<text x="600" y="603" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">DEPLOY parameter unticked = CI-only run.</text>
+<rect x="580" y="680" width="440" height="250" rx="12" fill="#ecfbfc" stroke="#0e7c86" stroke-width="1.5"/>
+<path d="M580 692 a12 12 0 0 1 12 -12 h416 a12 12 0 0 1 12 12 v24 h-440 z" fill="#0e7c86"/>
+<text x="596" y="704" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">Apache Airflow</text>
+<text x="1006" y="704" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">weekly retraining · Codespaces</text>
+<rect x="600" y="730" width="94" height="30" rx="15" fill="#ffffff" stroke="#0e7c86" stroke-width="1.3"/>
+<text x="647.0" y="749.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Validate data</text>
+<rect x="702" y="730" width="94" height="30" rx="15" fill="#ffffff" stroke="#0e7c86" stroke-width="1.3"/>
+<text x="749.0" y="749.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Prepare split</text>
+<rect x="804" y="730" width="94" height="30" rx="15" fill="#ffffff" stroke="#0e7c86" stroke-width="1.3"/>
+<text x="851.0" y="749.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Train XGBoost</text>
+<rect x="906" y="730" width="94" height="30" rx="15" fill="#ffffff" stroke="#0e7c86" stroke-width="1.3"/>
+<text x="953.0" y="749.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Evaluate</text>
+<rect x="600" y="782" width="118" height="30" rx="15" fill="#ffffff" stroke="#0e7c86" stroke-width="1.3"/>
+<text x="659.0" y="801.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Quality gate</text>
+<rect x="736" y="770" width="132" height="26" rx="15" fill="#ffffff" stroke="#0e7c86" stroke-width="1.3"/>
+<text x="802.0" y="787.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Register + promote</text>
+<rect x="736" y="802" width="132" height="26" rx="15" fill="#ffffff" stroke="#0e7c86" stroke-width="1.3"/>
+<text x="802.0" y="819.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Reject (keep prod)</text>
+<rect x="886" y="782" width="114" height="30" rx="15" fill="#ffffff" stroke="#0e7c86" stroke-width="1.3"/>
+<text x="943.0" y="801.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Report</text>
+<path d="M718 797 L732 783 M718 797 L732 815 M868 783 L882 797 M868 815 L882 797" stroke="#0e7c86" stroke-width="1.5" fill="none"/>
+<text x="600" y="862" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Gate: test R² ≥ 0.99 and MAE no worse than production.</text>
+<text x="600" y="879" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Promoted model is written to api/models; pushing it</text>
+<text x="600" y="896" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">to GitHub triggers Jenkins, which ships it.</text>
+<path d="M580 805 L484 805" fill="none" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<text x="532" y="785" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="middle">log run ·</text>
+<text x="532" y="799" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="middle">register</text>
+<path d="M480 222 L576 222" fill="none" stroke="#52606d" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ah)"/>
+<text x="528" y="198" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="middle">model files</text>
+<text x="528" y="212" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="middle">→ api/models</text>
+<rect x="1150" y="80" width="420" height="150" rx="12" fill="#eef4ff" stroke="#1d63ed" stroke-width="1.5"/>
+<path d="M1150 92 a12 12 0 0 1 12 -12 h396 a12 12 0 0 1 12 12 v24 h-420 z" fill="#1d63ed"/>
+<text x="1166" y="104" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">Docker Hub</text>
+<text x="1556" y="104" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">image registry</text>
+<text x="1170" y="132" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1f2933" text-anchor="start">dockerkv102026/voyage-api</text>
+<text x="1170" y="154" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">tags: latest  ·  &lt;build&gt;-&lt;commit&gt;</text>
+<text x="1170" y="174" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">python 3.13-slim · gunicorn · non-root user</text>
+<text x="1170" y="194" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">health check on /health · models baked in</text>
+<path d="M1360 230 L1360 266" fill="none" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<text x="1372" y="252" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="start">pull image</text>
+<rect x="1150" y="270" width="420" height="220" rx="12" fill="#f5f0ff" stroke="#6d28d9" stroke-width="1.5"/>
+<path d="M1150 282 a12 12 0 0 1 12 -12 h396 a12 12 0 0 1 12 12 v24 h-420 z" fill="#6d28d9"/>
+<text x="1166" y="294" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">Render · API</text>
+<text x="1556" y="294" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">voyage-api-lfe6.onrender.com</text>
+<text x="1170" y="324" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Flask REST API in the Docker image (free web service)</text>
+<rect x="1170" y="338" width="120" height="30" rx="15" fill="#ffffff" stroke="#6d28d9" stroke-width="1.3"/>
+<text x="1230.0" y="357.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">GET /health</text>
+<rect x="1300" y="338" width="120" height="30" rx="15" fill="#ffffff" stroke="#6d28d9" stroke-width="1.3"/>
+<text x="1360.0" y="357.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">GET /options</text>
+<rect x="1170" y="376" width="180" height="30" rx="15" fill="#ffffff" stroke="#6d28d9" stroke-width="1.3"/>
+<text x="1260.0" y="395.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">POST /predict/price</text>
+<rect x="1360" y="376" width="190" height="30" rx="15" fill="#ffffff" stroke="#6d28d9" stroke-width="1.3"/>
+<text x="1455.0" y="395.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">POST /predict/gender</text>
+<rect x="1170" y="414" width="200" height="30" rx="15" fill="#ffffff" stroke="#6d28d9" stroke-width="1.3"/>
+<text x="1270.0" y="433.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">POST /recommend/hotels</text>
+<text x="1380" y="434" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">input validation → 400</text>
+<text x="1380" y="451" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">models loaded once</text>
+<rect x="1150" y="530" width="300" height="120" rx="12" fill="#f5f0ff" stroke="#6d28d9" stroke-width="1.5"/>
+<path d="M1150 542 a12 12 0 0 1 12 -12 h276 a12 12 0 0 1 12 12 v24 h-300 z" fill="#6d28d9"/>
+<text x="1166" y="554" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">Render · Web app</text>
+<text x="1436" y="554" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">static site</text>
+<text x="1166" y="582" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#1f2933" text-anchor="start">voyage-analytics-yd7n.onrender.com</text>
+<text x="1166" y="602" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Fare estimate · Hotel picks · Name check</text>
+<text x="1166" y="619" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Insights · Models (HTML, CSS, JS)</text>
+<path d="M1260 530 L1260 494" fill="none" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<text x="1272" y="516" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="start">REST / JSON</text>
+<rect x="1478" y="562" width="92" height="58" rx="29" fill="#ffffff" stroke="#9aa5b1" stroke-width="1.3"/>
+<text x="1524" y="588" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#1f2933" text-anchor="middle">Travellers</text>
+<text x="1524" y="604" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="400" fill="#52606d" text-anchor="middle">(browser)</text>
+<path d="M1478 591 L1454 591" fill="none" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="1150" y="690" width="420" height="240" rx="12" fill="#eef3fd" stroke="#326ce5" stroke-width="1.5"/>
+<path d="M1150 702 a12 12 0 0 1 12 -12 h396 a12 12 0 0 1 12 12 v24 h-420 z" fill="#326ce5"/>
+<text x="1166" y="714" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#ffffff" text-anchor="start">Kubernetes (kind)</text>
+<text x="1556" y="714" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#ffffff" text-anchor="end">scalability · Codespaces</text>
+<rect x="1170" y="742" width="186" height="30" rx="15" fill="#ffffff" stroke="#326ce5" stroke-width="1.3"/>
+<text x="1263.0" y="761.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Deployment · 2 replicas</text>
+<rect x="1364" y="742" width="186" height="30" rx="15" fill="#ffffff" stroke="#326ce5" stroke-width="1.3"/>
+<text x="1457.0" y="761.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Service · NodePort 30080</text>
+<rect x="1170" y="782" width="186" height="30" rx="15" fill="#ffffff" stroke="#326ce5" stroke-width="1.3"/>
+<text x="1263.0" y="801.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">HPA · 2 → 5 pods @ 50% CPU</text>
+<rect x="1364" y="782" width="186" height="30" rx="15" fill="#ffffff" stroke="#326ce5" stroke-width="1.3"/>
+<text x="1457.0" y="801.0" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1f2933" text-anchor="middle">Probes · rolling updates</text>
+<text x="1170" y="842" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Load-test Job: 20 workers × 240 s on POST /predict/price</text>
+<text x="1170" y="860" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">→ CPU 270% of target, HPA scaled from 2 to 5 pods.</text>
+<text x="1170" y="884" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#3e4c59" text-anchor="start">Same image as Render, loaded into the kind cluster.</text>
+<path d="M1020 437 L1060 437 L1060 155 L1146 155" fill="none" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<text x="1052" y="300" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="middle" transform="rotate(-90 1052 300)">push :&lt;build&gt;-&lt;commit&gt; &amp; :latest</text>
+<path d="M1020 490 L1100 490 L1100 300 L1146 300" fill="none" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<text x="1092" y="395" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="middle" transform="rotate(-90 1092 395)">deploy + verify /health</text>
+<path d="M1570 120 L1610 120 L1610 810 L1574 810" fill="none" stroke="#52606d" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ah)"/>
+<text x="1625" y="465" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#52606d" text-anchor="middle" transform="rotate(90 1625 465)">image loaded into kind</text>
+<path d="M40 970 L90 970" stroke="#52606d" stroke-width="2" marker-end="url(#ah)"/>
+<text x="100" y="974" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#3e4c59" text-anchor="start">automated</text>
+<path d="M190 970 L240 970" stroke="#52606d" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ah)"/>
+<text x="250" y="974" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#3e4c59" text-anchor="start">manual step</text>
+<text x="1620" y="974" font-family="Segoe UI, Inter, Helvetica, Arial, sans-serif" font-size="12" font-weight="500" fill="#3e4c59" text-anchor="end">Free tiers only: Google Colab · DagsHub · GitHub + Codespaces · Docker Hub · Render</text>
+</svg>
