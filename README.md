@@ -1,6 +1,6 @@
 # Voyage Analytics: Integrating MLOps in Travel
 
-End-to-end MLOps capstone (Scaler DSML) built on three travel datasets: **flights**, **hotels** and **users**.
+End-to-end MLOps capstone built on three travel datasets: **flights**, **hotels** and **users**.
 Three models are trained and tracked with MLflow, served through one Flask REST API in Docker, scaled on
 Kubernetes, retrained by Apache Airflow, shipped by a Jenkins CI/CD pipeline, and used by a web app.
 Everything runs on **free cloud tiers**, with nothing installed on a local machine.
@@ -209,4 +209,4 @@ runs and figures.
 
 ## Author
 
-Para (GitHub: [KVAlwaysLearning](https://github.com/KVAlwaysLearning)) · Scaler DSML capstone project
+(GitHub: [KVAlwaysLearning](https://github.com/KVAlwaysLearning)) · voyage-analytics project
