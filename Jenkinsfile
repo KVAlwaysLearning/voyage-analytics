@@ -159,7 +159,9 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'render-deploy-hook', variable: 'HOOK')]) {
                     sh '''
-                        curl -fsS -X POST "$HOOK" -o reports/render_deploy.json
+                        # ask Render for this exact image tag (not just ':latest', which Render may resolve to a cached older image)
+                        ENC=$(printf '%s' "$IMAGE:$TAG" | sed 's|/|%2F|g; s|:|%3A|g')
+                        curl -fsS -X POST "$HOOK&imgURL=$ENC" -o reports/render_deploy.json || curl -fsS -X POST "$HOOK" -o reports/render_deploy.json
                         cat reports/render_deploy.json; echo
                     '''
                 }
@@ -170,15 +172,23 @@ pipeline {
             when { expression { env.DO_DEPLOY == 'true' && env.RENDER_DEPLOY_ENABLED == 'true' } }
             steps {
                 timeout(time: 15, unit: 'MINUTES') {
+                  withCredentials([string(credentialsId: 'render-deploy-hook', variable: 'HOOK')]) {
                     sh '''
                         echo "Waiting for $RENDER_API_URL to serve version $APP_VERSION (a free Render deploy takes a few minutes)"
+                        n=0
                         until curl -fsS --max-time 90 "$RENDER_API_URL/health" -o reports/live_health.json && grep -qF "$APP_VERSION" reports/live_health.json; do
                             echo "  live API is on: $(grep -o '"version": *"[^"]*"' reports/live_health.json 2>/dev/null || echo 'starting up')"
+                            n=$((n+1))
+                            if [ "$n" = "15" ]; then
+                                echo "  still the old version after ~5 min - asking Render to deploy again"
+                                curl -fsS -X POST "$HOOK" -o /dev/null || true
+                            fi
                             sleep 20
                         done
                         echo "Live API is serving this build:"
                         cat reports/live_health.json; echo
                     '''
+                  }
                 }
             }
         }
